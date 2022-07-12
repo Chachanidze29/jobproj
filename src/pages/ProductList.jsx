@@ -12,6 +12,8 @@ import {
 import ProductContext from "../contexts/ProductContext";
 import ajax from "../utils/ajax";
 
+let isFetched = false;
+
 const ProductList = ()=> {
     const navigate = useNavigate();
     const [selectedSkus,setSelectedSkus] = useState([]);
@@ -19,8 +21,11 @@ const ProductList = ()=> {
 
     useEffect(()=> {
         const getData = async ()=> {
-            const response = await ajax.get('products');
-            setProducts(response.data);
+            if(!isFetched) {
+                const response = await ajax.get('products');
+                setProducts(response.data);
+                isFetched = true;
+            }
         }
 
         getData().catch(err=>console.log(err));
