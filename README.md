@@ -1,1 +1,1 @@
-https://scandiweb-react-php.vercel.app/
+https://jobproj.vercel.app/
